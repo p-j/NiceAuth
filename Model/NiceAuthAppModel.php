@@ -14,8 +14,19 @@
  * @license http://www.opensource.org/licenses/mit-license.php MIT
  */
 
-App::uses('AppModel', 'Model');
+App::uses( 'AppModel', 'Model' );
 class NiceAuthAppModel extends AppModel {
-	}
+	/**
+	 * Plugin name
+	 *
+	 * @var string $plugin
+	 */
+	public $plugin = 'NiceAuth';
 
-?>
+	/**
+	 * Behaviors
+	 *
+	 * @var array
+	 */
+	public $actsAs = array( 'Containable' );
+}

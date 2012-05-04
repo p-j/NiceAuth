@@ -17,16 +17,16 @@
 App::uses('NiceAuthAppModel', 'NiceAuth.Model');
 
 class User extends NiceAuthAppModel {
-	
+
 	var $name = 'User';
 	public $belongsTo = array(
 		'Group' => array(
 			'foreignKey' => 'group_id'
 			)
 		);
-	
-    //var $actsAs = array('Acl' => array('type' => 'requester'));
-    var $actsAs = array('Acl' => 'requester');
+
+    var $actsAs = array('Acl' => array('type' => 'requester'));
+    // var $actsAs = array('Acl' => 'requester');
 
     public function parentNode() {
         if (!$this->id && empty($this->data)) {
@@ -34,20 +34,20 @@ class User extends NiceAuthAppModel {
         	}
         if (isset($this->data['User']['group_id'])) {
             $groupId = $this->data['User']['group_id'];
-        	} 
+        	}
         else {
             $groupId = $this->field('group_id');
         	}
         if (!$groupId) {
             return null;
-        	} 
+        	}
         else {
             return array('Group' => array('id' => $groupId));
         	}
     	}
-	
+
 	var $validate = array(
-		'username' => array( 
+		'username' => array(
 			'alphaNumeric' => array(
 				//'rule' => 'alphaNumeric',
 				'rule' => 'isUnique',

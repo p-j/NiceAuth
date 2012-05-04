@@ -18,11 +18,18 @@ class NiceAuthAppController extends AppController {
 
 	var $components = array("Acl", "Auth", "Session");
 
-	public function beforeFilter(){
-		Configure::load('NiceAuth.config');
-		$this->Auth->loginAction = '/login';
+	public function beforeFilter() {
+			Configure::load( 'NiceAuth.config' );
+			$this->Auth->loginAction = '/login';
+			parent::beforeFilter();
+		}
+
+		public function beforeRender() {
+			parent::beforeRender();
+		}
+
+		public function afterFilter() {
+			parent::afterFilter();
 		}
 
 	}
-
-?>
